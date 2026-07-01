@@ -283,7 +283,7 @@
             color: var(--accent);
         }
 
-        /* Content details - Safely raised and styled for extreme bold readability */
+        /* Content details - Raised and styled for extreme bold readability */
         .content-details { 
             position: absolute; 
             bottom: 70px; 
@@ -307,13 +307,6 @@
             color: #ffffff;
             margin-top: 4px;
             margin-bottom: 5px;
-            text-shadow: 0 2px 6px rgba(0,0,0,1), 0 1px 3px rgba(0,0,0,0.8);
-        }
-        .content-details .video-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #e5e5e5;
-            line-height: 1.4;
             text-shadow: 0 2px 6px rgba(0,0,0,1), 0 1px 3px rgba(0,0,0,0.8);
         }
         .verified-tick { 
@@ -677,63 +670,53 @@
         <div class="reels-container" id="reelsContainer"></div>
     </section>
 
-    <!-- VIEW: Upload Form -->
+    <!-- VIEW: Upload Form (Single Unified Content Post Form) -->
     <section id="uploadView" class="view-section">
-        <!-- 1. Normal upload form container (Shown if user is approved) -->
+        <!-- Unified upload form container (Shown if user is approved) -->
         <div class="profile-wrapper" id="uploadFormContainer" style="display: none;">
             <h2 style="font-size: 20px; font-weight: 900; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px;">নতুন ভিডিও আপলোড করুন</h2>
             
-            <!-- Pixeldrain Direct Upload Segment (Configured to trigger device gallery directly) -->
-            <div class="form-group" style="border: 1px dashed var(--border); padding: 15px; border-radius: 12px; margin-bottom: 20px; background: rgba(255, 59, 92, 0.03);">
-                <label style="color: var(--accent); font-weight: bold; display: flex; align-items: center; gap: 6px; font-size: 13px;">
-                    <i class="fas fa-image"></i> গ্যালারি থেকে সরাসরি আপলোড করুন (সর্বোচ্চ ১০০ এমবি)
-                </label>
-                <p style="font-size: 11px; color: #888; margin-bottom: 12px; line-height: 1.4;">
-                    রিল ভিডিও ও থাম্বনেইল সরাসরি আপনার গ্যালারি থেকে পিক্সেলড্রেনে আপলোড করতে ফাইল সিলেক্ট করুন:
-                </p>
-                
-                <div class="form-group">
-                    <label style="font-size: 11px;">রিল ভিডিও ফাইল নির্বাচন করুন (Reel Video - Max 100MB)</label>
-                    <input type="file" id="pdVideoFile" accept="video/*" style="padding: 8px; background: #121214; border-radius: 8px; width: 100%; border: 1px solid #333; color: #fff;">
-                </div>
-                
-                <div class="form-group">
-                    <label style="font-size: 11px;">থাম্বনেইল ইমেজ নির্বাচন করুন (Thumbnail - Max 100MB)</label>
-                    <input type="file" id="pdThumbFile" accept="image/*" style="padding: 8px; background: #121214; border-radius: 8px; width: 100%; border: 1px solid #333; color: #fff;">
-                </div>
-                
-                <button type="button" class="btn-primary" id="btnPdUpload" style="background: #10b981; font-size: 12px; padding: 10px;"><i class="fas fa-upload"></i> গ্যালারি থেকে আপলোড করুন</button>
-                <div id="pdUploadProgress" style="font-size: 11px; color: var(--neon-blue); display: none; text-align: center; margin-top: 10px; font-weight: bold;">Uploading...</div>
-            </div>
-
             <div>
+                <!-- 1. Video Title -->
                 <div class="form-group">
-                    <label>ভিডিওর টাইটেল</label>
-                    <input type="text" id="upTitle" placeholder="দারুণ একটি টাইটেল লিখুন...">
+                    <label>রিল ভিডিওর টাইটেল (Title)</label>
+                    <input type="text" id="upTitle" placeholder="ভিডিওর সুন্দর একটি টাইটেল লিখুন...">
                 </div>
-                <div class="form-group">
-                    <label>ভিডিওর ক্যাপশন / বিবরণ</label>
-                    <input type="text" id="upCaption" placeholder="ক্যাপশন বা সংক্ষিপ্ত বিবরণ লিখুন...">
-                </div>
-                <div class="form-group">
-                    <label>ভিডিও লিংক (Direct Video/YouTube Embed/MP4)</label>
-                    <input type="text" id="upUrl" placeholder="https://example.com/video.mp4">
-                    <div class="form-hint">ভিডিওটির সরাসরি .mp4 লিংক অথবা ইউটিউব/অন্য কোনো প্লেয়ারের এম্বেড লিংক বসান।</div>
-                </div>
-                <div class="form-group">
-                    <label>থাম্বনেইল ইমেজ লিংক (অপশনাল)</label>
-                    <input type="text" id="upThumb" placeholder="https://example.com/thumbnail.jpg">
-                    <div class="form-hint">ভিডিও প্লে হওয়ার পূর্বে এই ছবিটি কভার হিসেবে প্রদর্শিত হবে।</div>
+
+                <!-- 2. Media Upload & Gallery Selection Card -->
+                <div class="form-group" style="border: 1px dashed var(--border); padding: 15px; border-radius: 12px; margin-bottom: 20px; background: rgba(255, 59, 92, 0.03);">
+                    <label style="color: var(--accent); font-weight: bold; display: flex; align-items: center; gap: 6px; font-size: 13px;">
+                        <i class="fas fa-image"></i> গ্যালারি ফাইল ও সরাসরি লিংক পোস্ট
+                    </label>
+                    <p style="font-size: 11px; color: #888; margin-bottom: 15px; line-height: 1.4;">
+                        গ্যালারি থেকে সরাসরি আপলোড করতে "Choose File" করুন। অথবা যদি ব্রাউজার আপলোড ব্লক করে, তবে নিচে সরাসরি লিংকও পেস্ট করতে পারেন।
+                    </p>
+                    
+                    <!-- Thumbnail segment -->
+                    <div class="form-group" style="margin-bottom: 18px;">
+                        <label style="font-size: 11px; color: var(--neon-blue);">রিল থাম্বনেইল নির্বাচন করুন (Reels Thumbnail - Max 100MB)</label>
+                        <input type="file" id="pdThumbFile" accept="image/*" style="padding: 8px; background: #121214; border-radius: 8px; width: 100%; border: 1px solid #333; color: #fff;">
+                        <div style="margin-top: 5px; font-size: 11px; color: #666;">অথবা থাম্বনেইল ইমেজ লিংক দিন:</div>
+                        <input type="text" id="upThumb" placeholder="https://example.com/thumbnail.jpg">
+                    </div>
+                    
+                    <!-- Video segment -->
+                    <div class="form-group">
+                        <label style="font-size: 11px; color: var(--neon-blue);">রিল ভিডিও ফাইল নির্বাচন করুন (Reels Video - Max 100MB)</label>
+                        <input type="file" id="pdVideoFile" accept="video/*" style="padding: 8px; background: #121214; border-radius: 8px; width: 100%; border: 1px solid #333; color: #fff;">
+                        <div style="margin-top: 5px; font-size: 11px; color: #666;">অথবা ভিডিও .mp4 লিংক সরাসরি দিন:</div>
+                        <input type="text" id="upUrl" placeholder="https://example.com/video.mp4">
+                    </div>
                 </div>
                 
-                <!-- Watch Full Video Link Option -->
+                <!-- 3. Special Link: Watch Full Video Link Option -->
                 <div class="form-group" style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 10px; border: 1px solid var(--border);">
                     <label style="color: var(--neon-blue); font-size: 12px;"><i class="fas fa-play-circle"></i> Watch Full Video Link (সম্পূর্ণ ভিডিওর লিংক - ঐচ্ছিক)</label>
                     <input type="text" id="upFullMovieUrl" placeholder="https://example.com/full-movie.mp4">
-                    <div class="form-hint" style="color: #666; font-size: 10px; margin-top: 3px;">ইউজাররা রিলের নিচের বাটনে ক্লিক করলে সরাসরি এই লিংকে চলে যাবে।</div>
                 </div>
 
-                <button class="btn-primary" id="btnSubmitVideo" style="margin-top: 15px;"><i class="fas fa-cloud-upload-alt"></i> গ্যালারিতে পোস্ট করুন</button>
+                <button class="btn-primary" id="btnSubmitVideo" style="margin-top: 15px;"><i class="fas fa-cloud-upload-alt"></i> Publish</button>
+                <div id="pdUploadProgress" style="font-size: 12px; color: var(--neon-blue); display: none; text-align: center; margin-top: 10px; font-weight: bold;">Uploading...</div>
             </div>
         </div>
 
@@ -1127,98 +1110,101 @@
             }
         }
 
-        // Direct Upload Action Click Handler
-        document.getElementById('btnPdUpload').addEventListener('click', async () => {
-            const videoFile = document.getElementById('pdVideoFile').files[0];
-            const thumbFile = document.getElementById('pdThumbFile').files[0];
+        // Video uploads & Publish (Unified single-click upload and publish flow)
+        document.getElementById('btnSubmitVideo').addEventListener('click', async () => {
+            const title = document.getElementById('upTitle').value.trim();
+            const fullMovieUrl = document.getElementById('upFullMovieUrl').value.trim();
             const progressDiv = document.getElementById('pdUploadProgress');
 
-            // Read Optional API Key from local storage (set inside profile config)
-            const apiKey = localStorage.getItem('pdApiKey') || '';
+            // Files from uploader widget
+            const videoFile = document.getElementById('pdVideoFile').files[0];
+            const thumbFile = document.getElementById('pdThumbFile').files[0];
 
-            if (!videoFile && !thumbFile) {
-                showAlert("আপলোড করার জন্য ভিডিও বা থাম্বনেইল ফাইল সিলেক্ট করুন!");
+            // Text box link fallbacks (If uploading is blocked by WebView CORS security)
+            let finalVideoUrl = document.getElementById('upUrl').value.trim();
+            let finalThumbUrl = document.getElementById('upThumb').value.trim();
+
+            if (!title) {
+                showAlert("অনুগ্রহ করে ভিডিওর টাইটেল দিন!");
                 return;
             }
 
+            // Ensure we have at least a video file or a raw link
+            if (!videoFile && !finalVideoUrl) {
+                showAlert("ভিডিও ফাইল নির্বাচন করুন অথবা সরাসরি প্লে লিংক দিন!");
+                return;
+            }
+
+            // Start posting & background uploading
             progressDiv.style.display = 'block';
             progressDiv.style.color = 'var(--neon-blue)';
-            progressDiv.innerText = "পিক্সেলড্রেন সার্ভারে ফাইল পাঠানো হচ্ছে...";
+            progressDiv.innerText = "পাবলিশিং প্রক্রিয়া শুরু হচ্ছে...";
+
+            const apiKey = localStorage.getItem('pdApiKey') || '';
 
             try {
-                if (videoFile) {
-                    progressDiv.innerText = "ভিডিও ফাইল আপলোড হচ্ছে...";
-                    const videoUrl = await uploadFileToPixeldrain(videoFile, apiKey);
-                    document.getElementById('upUrl').value = videoUrl;
-                    showAlert("ভিডিও ফাইল সরাসরি আপলোড হয়েছে!");
-                }
-
+                // 1. Upload Thumbnail to Pixeldrain (If file selected)
                 if (thumbFile) {
-                    progressDiv.innerText = "থাম্বনেইল ইমেজ আপলোড হচ্ছে...";
-                    const thumbUrl = await uploadFileToPixeldrain(thumbFile, apiKey);
-                    document.getElementById('upThumb').value = thumbUrl;
-                    showAlert("থাম্বনেইল সরাসরি আপলোড হয়েছে!");
+                    progressDiv.innerText = "থাম্বনেইল ফাইল গ্যালারি থেকে আপলোড হচ্ছে...";
+                    finalThumbUrl = await uploadFileToPixeldrain(thumbFile, apiKey);
                 }
 
-                progressDiv.innerText = "পিক্সেলড্রেন আপলোড সফল হয়েছে এবং লিংক ফিল্ডে যুক্ত হয়েছে!";
-                progressDiv.style.color = '#10b981';
+                // 2. Upload Reel Video to Pixeldrain (If file selected)
+                if (videoFile) {
+                    progressDiv.innerText = "ভিডিও ফাইল গ্যালারি থেকে আপলোড হচ্ছে (সর্বোচ্চ ১০০ এমবি)...";
+                    finalVideoUrl = await uploadFileToPixeldrain(videoFile, apiKey);
+                }
+
+                // Default cover if none provided
+                if (!finalThumbUrl) {
+                    finalThumbUrl = "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1080";
+                }
+
+                progressDiv.innerText = "ডাটাবেজে রিল পোস্ট সংরক্ষণ করা হচ্ছে...";
+
+                // Get current creator name and save to Realtime Database
+                onValue(ref(db, 'creators/' + myCreatorId + '/name'), (snap) => {
+                    const authorName = snap.val() || "Creator";
+                    const videoId = 'v_' + Date.now();
+
+                    const newVideo = {
+                        id: videoId,
+                        userId: myCreatorId,
+                        username: authorName,
+                        title: title,
+                        videoUrl: finalVideoUrl,
+                        thumb: finalThumbUrl,
+                        fullMovieUrl: fullMovieUrl || "", // Redirect URL
+                        views: 0,
+                        likes: 0,
+                        commentsCount: 0,
+                        sharesCount: 0
+                    };
+
+                    set(ref(db, 'videoList/' + videoId), newVideo).then(() => {
+                        showAlert("ভিডিওটি সফলভাবে আপনার গ্যালারিতে পাবলিশ করা হয়েছে!");
+                        
+                        // Clear all form inputs
+                        document.getElementById('upTitle').value = '';
+                        document.getElementById('upUrl').value = '';
+                        document.getElementById('upThumb').value = '';
+                        document.getElementById('upFullMovieUrl').value = '';
+                        
+                        document.getElementById('pdVideoFile').value = '';
+                        document.getElementById('pdThumbFile').value = '';
+                        progressDiv.style.display = 'none';
+
+                        // Instantly redirect user directly to their own Profile Gallery view
+                        window.switchView('profile');
+                    });
+                }, { onlyOnce: true });
+
             } catch (error) {
                 console.error(error);
-                progressDiv.innerText = `আপলোড ব্যর্থ হয়েছে: ${error.message}`;
                 progressDiv.style.color = '#ef4444';
-                showAlert("আপলোড ব্যর্থ হয়েছে।");
+                progressDiv.innerText = `পাবলিশিং ব্যর্থ হয়েছে: ${error.message}`;
+                showAlert("আপলোড বা পাবলিশ ব্যর্থ হয়েছে! মোবাইল সিকিউরিটি ব্লকের কারণে সরাসরি আপলোড না হলে, ম্যানুয়াল লিংকের ঘরে লিংক পেস্ট করে পোস্ট করুন।");
             }
-        });
-
-        // Video uploads & Publish
-        document.getElementById('btnSubmitVideo').addEventListener('click', () => {
-            const title = document.getElementById('upTitle').value.trim();
-            const caption = document.getElementById('upCaption').value.trim();
-            const url = document.getElementById('upUrl').value.trim();
-            const thumb = document.getElementById('upThumb').value.trim();
-            const fullMovieUrl = document.getElementById('upFullMovieUrl').value.trim();
-
-            if (!title || !url) {
-                showAlert("টাইটেল এবং ভিডিও লিংক অত্যন্ত আবশ্যক!");
-                return;
-            }
-
-            // Get current creator name
-            onValue(ref(db, 'creators/' + myCreatorId + '/name'), (snap) => {
-                const authorName = snap.val() || "Creator";
-                const videoId = 'v_' + Date.now();
-
-                const newVideo = {
-                    id: videoId,
-                    userId: myCreatorId,
-                    username: authorName,
-                    title: title,
-                    caption: caption || "", // Separate caption field
-                    videoUrl: url,
-                    thumb: thumb || "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1080",
-                    fullMovieUrl: fullMovieUrl || "", // Dynamic Full Content Redirect URL
-                    views: 0,
-                    likes: 0,
-                    commentsCount: 0,
-                    sharesCount: 0
-                };
-
-                set(ref(db, 'videoList/' + videoId), newVideo).then(() => {
-                    showAlert("ভিডিওটি সফলভাবে গ্যালারিতে আপলোড করা হয়েছে!");
-                    document.getElementById('upTitle').value = '';
-                    document.getElementById('upCaption').value = '';
-                    document.getElementById('upUrl').value = '';
-                    document.getElementById('upThumb').value = '';
-                    document.getElementById('upFullMovieUrl').value = '';
-                    
-                    // Reset File Input Fields
-                    document.getElementById('pdVideoFile').value = '';
-                    document.getElementById('pdThumbFile').value = '';
-                    document.getElementById('pdUploadProgress').style.display = 'none';
-
-                    window.switchView('profile');
-                });
-            }, { onlyOnce: true });
         });
 
         // Profile loading & rendering
@@ -1492,10 +1478,9 @@
                     <div class="content-details">
                         <h2 style="cursor: pointer;" id="author-name-btn-${item.id}">${item.username || 'Creator'} <i class="fas fa-check-circle verified-tick"></i></h2>
                         <h3 class="reel-title">${item.title || ''}</h3>
-                        <p class="video-title">${item.caption || ''}</p>
                         ${item.fullMovieUrl ? `
                             <button class="watch-full-btn" id="watch-full-btn-${item.id}">
-                                <i class="fas fa-play"></i> সম্পূর্ণ ভিডিওটি দেখুন
+                                <i class="fas fa-play"></i> Watch Full Video
                             </button>
                         ` : ''}
                     </div>
