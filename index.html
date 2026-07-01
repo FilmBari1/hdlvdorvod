@@ -283,28 +283,38 @@
             color: var(--accent);
         }
 
-        /* Content details - Safely raised */
+        /* Content details - Safely raised and styled for extreme bold readability */
         .content-details { 
             position: absolute; 
             bottom: 70px; 
             left: 18px; 
             z-index: 40; 
             max-width: 70%; 
-            text-shadow: 0 1px 4px rgba(0,0,0,0.8);
         }
         .content-details h2 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 4px;
+            font-size: 18px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 5px;
             display: flex;
             align-items: center;
             gap: 5px;
+            text-shadow: 0 2px 6px rgba(0,0,0,1), 0 1px 3px rgba(0,0,0,0.8);
+        }
+        .content-details .reel-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 4px;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 6px rgba(0,0,0,1), 0 1px 3px rgba(0,0,0,0.8);
         }
         .content-details .video-title {
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 600;
             color: #e5e5e5;
-            font-weight: 400;
             line-height: 1.4;
+            text-shadow: 0 2px 6px rgba(0,0,0,1), 0 1px 3px rgba(0,0,0,0.8);
         }
         .verified-tick { 
             color: #00f2ea; 
@@ -673,13 +683,13 @@
         <div class="profile-wrapper" id="uploadFormContainer" style="display: none;">
             <h2 style="font-size: 20px; font-weight: 900; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 10px;">নতুন ভিডিও আপলোড করুন</h2>
             
-            <!-- Pixeldrain Direct Upload Segment -->
+            <!-- Pixeldrain Direct Upload Segment (Configured to trigger device gallery directly) -->
             <div class="form-group" style="border: 1px dashed var(--border); padding: 15px; border-radius: 12px; margin-bottom: 20px; background: rgba(255, 59, 92, 0.03);">
                 <label style="color: var(--accent); font-weight: bold; display: flex; align-items: center; gap: 6px; font-size: 13px;">
-                    <i class="fas fa-cloud-upload-alt"></i> পিক্সেলড্রেন ডিরেক্ট আপলোডার (সর্বোচ্চ ১০০ এমবি)
+                    <i class="fas fa-image"></i> গ্যালারি থেকে সরাসরি আপলোড করুন (সর্বোচ্চ ১০০ এমবি)
                 </label>
                 <p style="font-size: 11px; color: #888; margin-bottom: 12px; line-height: 1.4;">
-                    রিল ভিডিও ও থাম্বনেইল সরাসরি পিক্সেলড্রেনে আপলোড করে অটো-লিংক সেট করতে ফাইল সিলেক্ট করুন:
+                    রিল ভিডিও ও থাম্বনেইল সরাসরি আপনার গ্যালারি থেকে পিক্সেলড্রেনে আপলোড করতে ফাইল সিলেক্ট করুন:
                 </p>
                 
                 <div class="form-group">
@@ -692,14 +702,18 @@
                     <input type="file" id="pdThumbFile" accept="image/*" style="padding: 8px; background: #121214; border-radius: 8px; width: 100%; border: 1px solid #333; color: #fff;">
                 </div>
                 
-                <button type="button" class="btn-primary" id="btnPdUpload" style="background: #10b981; font-size: 12px; padding: 10px;"><i class="fas fa-upload"></i> পিক্সেলড্রেনে আপলোড করুন</button>
+                <button type="button" class="btn-primary" id="btnPdUpload" style="background: #10b981; font-size: 12px; padding: 10px;"><i class="fas fa-upload"></i> গ্যালারি থেকে আপলোড করুন</button>
                 <div id="pdUploadProgress" style="font-size: 11px; color: var(--neon-blue); display: none; text-align: center; margin-top: 10px; font-weight: bold;">Uploading...</div>
             </div>
 
             <div>
                 <div class="form-group">
-                    <label>ভিডিওর টাইটেল / ক্যাপশন</label>
-                    <input type="text" id="upTitle" placeholder="দারুণ কিছু লিখুন...">
+                    <label>ভিডিওর টাইটেল</label>
+                    <input type="text" id="upTitle" placeholder="দারুণ একটি টাইটেল লিখুন...">
+                </div>
+                <div class="form-group">
+                    <label>ভিডিওর ক্যাপশন / বিবরণ</label>
+                    <input type="text" id="upCaption" placeholder="ক্যাপশন বা সংক্ষিপ্ত বিবরণ লিখুন...">
                 </div>
                 <div class="form-group">
                     <label>ভিডিও লিংক (Direct Video/YouTube Embed/MP4)</label>
@@ -719,7 +733,7 @@
                     <div class="form-hint" style="color: #666; font-size: 10px; margin-top: 3px;">ইউজাররা রিলের নিচের বাটনে ক্লিক করলে সরাসরি এই লিংকে চলে যাবে।</div>
                 </div>
 
-                <button class="btn-primary" id="btnSubmitVideo" style="margin-top: 15px;"><i class="fas fa-cloud-upload-alt"></i> ভিডিও পোস্ট করুন</button>
+                <button class="btn-primary" id="btnSubmitVideo" style="margin-top: 15px;"><i class="fas fa-cloud-upload-alt"></i> গ্যালারিতে পোস্ট করুন</button>
             </div>
         </div>
 
@@ -742,7 +756,7 @@
                     <img id="profImg" class="profile-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="Profile">
                     <div class="edit-pic-btn" id="profPicEditBtn" style="display: none;"><i class="fas fa-pencil-alt"></i></div>
                 </div>
-                <div class="profile-name" id="profName">@Creator</div>
+                <div class="profile-name" id="profName">Creator</div>
                 <div class="profile-bio" id="profBio">বায়ো সেট করতে এখানে আলতো চাপুন...</div>
                 
                 <div class="profile-stats">
@@ -782,7 +796,7 @@
                 </div>
             </div>
 
-            <div class="profile-grid-title">আপলোড করা ভিডিও সমূহ</div>
+            <div class="profile-grid-title">আমার গ্যালারি (Gallery)</div>
             <div class="video-grid" id="profileVideoGrid">
                 <!-- User's uploaded videos list -->
             </div>
@@ -911,6 +925,33 @@
             toast.innerText = msg;
             toast.style.display = 'block';
             setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
+
+        // --- REAL-TIME LIVE LISTENER FOR CREATOR APPROVAL SYNC ---
+        if (myCreatorId) {
+            // Real-time check if the creator profile exists (approved by admin)
+            onValue(ref(db, 'creators/' + myCreatorId), (snap) => {
+                if (snap.exists()) {
+                    if (!isApproved) {
+                        localStorage.setItem('creatorApproved', 'true');
+                        isApproved = true;
+                        showAlert("অভিনন্দন! আপনার ক্রিয়েটর অ্যাকাউন্টটি এডমিন কর্তৃক অ্যাপ্রুভ করা হয়েছে।");
+                        // Refresh current blocked view to unlock upload/profile
+                        const activeTab = document.querySelector('.nav-tab.active');
+                        if (activeTab) {
+                            window.switchView(activeTab.dataset.target);
+                        }
+                    }
+                } else {
+                    // If admin deleted the creator, reset local state safely
+                    if (isApproved) {
+                        localStorage.removeItem('creatorApproved');
+                        isApproved = false;
+                        showAlert("আপনার ক্রিয়েটর অ্যাকাউন্টটি ডাটাবেজ থেকে নিষ্ক্রিয় করা হয়েছে।");
+                        window.switchView('home');
+                    }
+                }
+            });
         }
 
         // Active View Switching
@@ -1132,6 +1173,7 @@
         // Video uploads & Publish
         document.getElementById('btnSubmitVideo').addEventListener('click', () => {
             const title = document.getElementById('upTitle').value.trim();
+            const caption = document.getElementById('upCaption').value.trim();
             const url = document.getElementById('upUrl').value.trim();
             const thumb = document.getElementById('upThumb').value.trim();
             const fullMovieUrl = document.getElementById('upFullMovieUrl').value.trim();
@@ -1151,6 +1193,7 @@
                     userId: myCreatorId,
                     username: authorName,
                     title: title,
+                    caption: caption || "", // Separate caption field
                     videoUrl: url,
                     thumb: thumb || "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1080",
                     fullMovieUrl: fullMovieUrl || "", // Dynamic Full Content Redirect URL
@@ -1161,8 +1204,9 @@
                 };
 
                 set(ref(db, 'videoList/' + videoId), newVideo).then(() => {
-                    showAlert("ভিডিওটি সফলভাবে আপলোড করা হয়েছে!");
+                    showAlert("ভিডিওটি সফলভাবে গ্যালারিতে আপলোড করা হয়েছে!");
                     document.getElementById('upTitle').value = '';
+                    document.getElementById('upCaption').value = '';
                     document.getElementById('upUrl').value = '';
                     document.getElementById('upThumb').value = '';
                     document.getElementById('upFullMovieUrl').value = '';
@@ -1199,7 +1243,7 @@
             // Get profile details
             onValue(ref(db, 'creators/' + userId), (snap) => {
                 const data = snap.val() || {};
-                document.getElementById('profName').innerText = "@" + (data.name || "Creator");
+                document.getElementById('profName').innerText = data.name || "Creator";
                 document.getElementById('profBio').innerText = data.bio || (isMe ? "বায়ো সেট করতে এখানে আলতো চাপুন..." : "কোনো বায়ো সেট করা নেই");
                 document.getElementById('profImg').src = data.profilePic || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300";
                 document.getElementById('statFollowers').innerText = formatNumber(data.followers || 0);
@@ -1446,8 +1490,9 @@
                     </div>
 
                     <div class="content-details">
-                        <h2 style="cursor: pointer;" id="author-name-btn-${item.id}">@${item.username || 'Creator'} <i class="fas fa-check-circle verified-tick"></i></h2>
-                        <p class="video-title">${item.title || 'Enjoy the best quality reels! ✨'}</p>
+                        <h2 style="cursor: pointer;" id="author-name-btn-${item.id}">${item.username || 'Creator'} <i class="fas fa-check-circle verified-tick"></i></h2>
+                        <h3 class="reel-title">${item.title || ''}</h3>
+                        <p class="video-title">${item.caption || ''}</p>
                         ${item.fullMovieUrl ? `
                             <button class="watch-full-btn" id="watch-full-btn-${item.id}">
                                 <i class="fas fa-play"></i> সম্পূর্ণ ভিডিওটি দেখুন
